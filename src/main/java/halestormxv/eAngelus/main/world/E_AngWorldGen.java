@@ -46,7 +46,7 @@ public class E_AngWorldGen implements IWorldGenerator {
 			this.runGenerator(this.gen_AngelicOre, world, random, chunkX, chunkZ, 6, 72, 128);
 			this.runGenerator(this.gen_AzureiteOre, world, random, chunkX, chunkZ, 12, 24, 128); 
 			this.runGenerator(this.gen_DemonicOre, world, random, chunkX, chunkZ, 6, 8, 16); 
-			this.runGenerator(this.gen_MystalCite, world, random, chunkX, chunkZ, 8, 12, 128); 
+			this.runGenerator(this.gen_MystalCite, world, random, chunkX, chunkZ, 8, 12, 36); 
 			this.runGenerator(this.gen_SerpentineOre, world, random, chunkX, chunkZ, 13, 12, 48); 
 			this.runGenerator(this.gen_TopazOre, world, random, chunkX, chunkZ, 16, 12, 128);
 			break;

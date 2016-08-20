@@ -20,8 +20,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
-import halestormxv.eAngelus.items.cards.O_card_Fire;
-
 public class eAngelusItems 
 {
 	public static Item angelic_ingot;

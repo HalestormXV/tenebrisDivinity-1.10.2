@@ -4,12 +4,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Random;
 
-import halestormxv.eAngelus.items.cards.O_card_Fire;
-import halestormxv.eAngelus.items.cards.O_card_Lightning;
-import halestormxv.eAngelus.items.cards.O_card_Strength;
-import halestormxv.eAngelus.items.cards.O_card_Wind;
-import halestormxv.eAngelus.items.cards.O_card_Wither;
 import halestormxv.eAngelus.main.Reference;
+import halestormxv.eAngelus.main.init.eAngelusItems;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -17,18 +13,23 @@ import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.projectile.EntityLargeFireball;
+import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -42,20 +43,130 @@ public class eAngelusCards extends Item
 	//Offense Card Names
 	public static final String[] O_cardNames = new String[] {"cIgnis", "cFortitudo", "cVentus", "cArescet", "cLightning"};
 
-
-	public static Class<? extends Item>[] itemClasses = new Class[]
-			{ O_card_Fire.class, O_card_Strength.class, O_card_Wind.class, O_card_Wither.class, O_card_Lightning.class };
-
 	public eAngelusCards(String unlocalizedName)
 	{
 		this.setUnlocalizedName(unlocalizedName);
 		this.setCreativeTab(Reference.eaCreativeTab);
+		this.setMaxStackSize(1);
+		this.setMaxDamage(-1);
 		this.setHasSubtypes(true);
+	}
+
+	public boolean isDamageable()
+	{
+		return false;
 	}
 
 	public EnumAction getItemUseAction(ItemStack itemstack)
 	{
 		return EnumAction.BLOCK;
+	}
+
+	@Override
+	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand)
+	{
+		if (playerIn.inventory.hasItemStack(new ItemStack(getItemUsedByORDER())))
+		{
+			if (playerIn.isSneaking())
+			{
+				playerIn.setActiveHand(hand); // start the charge up sequence
+				return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemStackIn);
+			}
+			else
+			{  
+				playerIn.addChatComponentMessage(new TextComponentString("\u00A74You need to be sneaking to activate an ORDER."));
+				return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemStackIn);
+			}
+		}
+		else
+		{
+			playerIn.addChatComponentMessage(new TextComponentString("You need \u00A76Mystal Dust \u00A7fto power an ORDER."));
+			return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemStackIn);
+		}
+	}
+
+	@Override
+	public int getMaxItemUseDuration(ItemStack stack) 
+	{
+		return CHARGE_UP_DURATION_TICKS + CHARGE_UP_INITIAL_PAUSE_TICKS;
+	}
+
+
+	//===============================HANDLE ALL CARD EFFECTS===============================\\
+	@Override
+	public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving)
+	{
+		switch(stack.getItemDamage())
+		{
+		case 0:
+			if (entityLiving instanceof EntityPlayer)
+			{
+				for(int i = 0; i <=3; i++)
+				{
+					Vec3d look = entityLiving.getLookVec();
+					EntityLargeFireball fireball2 = new EntityLargeFireball(worldIn, entityLiving, 1, 1, 1);
+					fireball2.setPosition(entityLiving.posX + look.xCoord * 5 + i, entityLiving.posY + look.yCoord * 5, entityLiving.posZ + look.zCoord * 5 + i + 1);
+					fireball2.accelerationX = look.xCoord * 0.3;
+					fireball2.accelerationY = look.yCoord * 0.3;
+					fireball2.accelerationZ = look.zCoord * 0.3;
+					worldIn.spawnEntityInWorld(fireball2);
+				}
+			}
+			break;
+
+		case 1:
+			if (entityLiving instanceof EntityPlayer)
+			{
+				//EntityPlayer entityPlayer = (EntityPlayer) entityLiving;
+				//entityPlayer.addPotionEffect(new PotionEffect(Potion.getPotionById(8201).getId(), 300, 10));
+			}
+			break;
+
+		case 2:
+			break;
+
+		case 3:
+			break;
+
+		case 4:
+			if (entityLiving instanceof EntityPlayer)
+			{
+				int j = getMaxItemUseDuration(stack) / Math.round(5);
+				EntityPlayer entityPlayer = (EntityPlayer) entityLiving;
+
+				List<EntityLivingBase> targetList = entityPlayer.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, entityPlayer.getEntityBoundingBox().expand(8.0F + j, 8.0F + j, 8.0F + j));
+				for (EntityLivingBase targets : targetList)
+				{
+					if ( targets != null)
+					{
+						if ( targets != entityPlayer )
+						{
+							entityPlayer.worldObj.spawnEntityInWorld(new EntityLightningBolt(worldIn, targets.posX, targets.posY, targets.posZ, false) );
+							targets.clearActivePotions();
+							worldIn.createExplosion(targets, targets.posX, targets.posY, targets.posZ, 3.2F + (j / 2), true);
+							targets.setHealth(targets.getHealth() - j);
+							//world.playSoundAtEntity(targets, RefStrings.MODID + ":leo_gift_execute", 1.4F, 1.0F);
+							System.out.println(j);
+						}
+					}
+				}
+			}
+			break;
+		}
+		this.consumeReagent(stack, worldIn, (EntityPlayer) entityLiving);
+		return stack;
+		//	    for items with multiple count, decrease stack size and return the itemstack, eg
+		//	    stack.stackSize--;
+		//	    return stack;
+	}
+
+	protected void consumeReagent(ItemStack stack, World worldIn, EntityPlayer entityLiving) {
+		entityLiving.inventory.clearMatchingItems(getItemUsedByORDER(), -1, 1, null);
+	}
+
+	protected Item getItemUsedByORDER() 
+	{
+		return eAngelusItems.mystalDust;
 	}
 
 	//===============================AUTO HANDLE UNLOCALIZED NAMES===============================\\
