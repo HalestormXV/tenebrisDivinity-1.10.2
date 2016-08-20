@@ -23,7 +23,7 @@ import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class O_card_Fire extends eAngelusCards 
+public class O_card_Fire extends eAngelusCards
 {
 	public O_card_Fire(String unlocalizedName) 
 	{
@@ -36,31 +36,5 @@ public class O_card_Fire extends eAngelusCards
 	{
 		return false;
 	}
-
 }
 
-
-/*
-@Override
-public void addInformation(ItemStack istack, EntityPlayer player, List info, boolean par4) {
-
-	NBTTagCompound tag = istack.stackTagCompound;
-
-    if (tag == null)
-    {
-        tag = new NBTTagCompound();
-        tag.setTag("display", new NBTTagCompound());
-        istack.stackTagCompound = tag;
-    }
-
-    tag.getTag("display");
-    tag.setTag("display", new NBTTagCompound());
-	NBTTagCompound taglore = tag.getCompoundTag("display");
-	NBTTagList lore = new NBTTagList();
-
-	lore.appendTag(new NBTTagString("§r"+"This is a special item, for adding"));
-	lore.appendTag(new NBTTagString("§r"+"guests"));
-	lore.appendTag(new NBTTagString("§r"+"into your home."));
-
-	taglore.setTag("Lore", lore);
-}*/
