@@ -15,6 +15,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.projectile.EntityLargeFireball;
 import net.minecraft.init.Items;
+import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.EnumRarity;
@@ -32,6 +33,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -117,8 +119,8 @@ public class eAngelusCards extends Item
 		case 1:
 			if (entityLiving instanceof EntityPlayer)
 			{
-				//EntityPlayer entityPlayer = (EntityPlayer) entityLiving;
-				//entityPlayer.addPotionEffect(new PotionEffect(Potion.getPotionById(8201).getId(), 300, 10));
+				EntityPlayer entityPlayer = (EntityPlayer) entityLiving;
+				entityPlayer.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, 300, 2));
 			}
 			break;
 
