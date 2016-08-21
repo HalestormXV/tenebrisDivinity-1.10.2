@@ -13,8 +13,8 @@ import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.fml.common.IWorldGenerator;
 
-public class E_AngWorldGen implements IWorldGenerator {
-	//@formatter:off
+public class E_AngWorldGen implements IWorldGenerator 
+{
 
 	private WorldGenerator gen_AngelicOre;
 	private WorldGenerator gen_AzureiteOre;
@@ -23,7 +23,6 @@ public class E_AngWorldGen implements IWorldGenerator {
 	private WorldGenerator gen_SerpentineOre;
 	private WorldGenerator gen_TopazOre;
 
-	//@formatter:on
 
 	public E_AngWorldGen()
 	{

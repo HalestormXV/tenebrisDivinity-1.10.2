@@ -6,6 +6,7 @@ import java.util.Random;
 
 import halestormxv.eAngelus.main.Reference;
 import halestormxv.eAngelus.main.init.eAngelusItems;
+import halestormxv.eAngelus.main.network.packets.ChatUtil;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -76,13 +77,13 @@ public class eAngelusCards extends Item
 			}
 			else
 			{  
-				playerIn.addChatComponentMessage(new TextComponentString("\u00A74You need to be sneaking to activate an ORDER."));
+				ChatUtil.sendNoSpam(playerIn, "\u00A74You need to be sneaking to activate an ORDER.");
 				return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemStackIn);
 			}
 		}
 		else
 		{
-			playerIn.addChatComponentMessage(new TextComponentString("You need \u00A76Mystal Dust \u00A7fto power an ORDER."));
+			ChatUtil.sendNoSpam(playerIn, "You need \u00A76Mystal Dust \u00A7fto power an ORDER.");
 			return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemStackIn);
 		}
 	}
