@@ -120,14 +120,41 @@ public class eAngelusCards extends Item
 			if (entityLiving instanceof EntityPlayer)
 			{
 				EntityPlayer entityPlayer = (EntityPlayer) entityLiving;
-				entityPlayer.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, 300, 2));
+				entityPlayer.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, 500, 2));
 			}
 			break;
 
 		case 2:
+			if (entityLiving instanceof EntityPlayer)
+			{
+				EntityPlayer entityPlayer = (EntityPlayer) entityLiving;
+				entityPlayer.addPotionEffect(new PotionEffect(MobEffects.SPEED, 500, 2));
+				entityPlayer.addPotionEffect(new PotionEffect(MobEffects.JUMP_BOOST, 500, 2));
+			}
 			break;
 
 		case 3:
+			if (entityLiving instanceof EntityPlayer)
+			{
+				int j = getMaxItemUseDuration(stack) / Math.round(5);
+				EntityPlayer entityPlayer = (EntityPlayer) entityLiving;
+
+				List<EntityLivingBase> targetList = entityPlayer.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, entityPlayer.getEntityBoundingBox().expand(8.0F + j, 8.0F + j, 8.0F + j));
+				for (EntityLivingBase targets : targetList)
+				{
+					if ( targets != null)
+					{
+						if ( targets != entityPlayer )
+						{
+							targets.clearActivePotions();
+							targets.addPotionEffect(new PotionEffect(MobEffects.WITHER, 500, 2 + j));
+							targets.addPotionEffect(new PotionEffect(MobEffects.WEAKNESS, 500, 2 + j));
+							//world.playSoundAtEntity(targets, RefStrings.MODID + ":leo_gift_execute", 1.4F, 1.0F);
+							System.out.println(j);
+						}
+					}
+				}
+			}
 			break;
 
 		case 4:
@@ -206,17 +233,58 @@ public class eAngelusCards extends Item
 			tooltip.add("");
 			tooltip.add("\u00A7n" + "Calls forth fire supreme.");
 		}
+		if (stack.getItemDamage() == 1)
+		{
+			tooltip.add("");
+			tooltip.add("\u00A76" + "You have power over your mind.");
+			tooltip.add("\u00A76" + "Not over outside events.");
+			tooltip.add("\u00A76" + "Realize this and you");
+			tooltip.add("\u00A76" + "will find strength..");
+			tooltip.add("");
+			tooltip.add("\u00A7n" + "Enhances physical strength.");
+		}
+		if (stack.getItemDamage() == 2)
+		{
+			tooltip.add("");
+			tooltip.add("\u00A76" + "He who does not know how");
+			tooltip.add("\u00A76" + "to look back at where he came");
+			tooltip.add("\u00A76" + "from will never get to his");
+			tooltip.add("\u00A76" + "destination...");
+			tooltip.add("");
+			tooltip.add("\u00A7n" + "Enhances Movement and Jump.");
+		}
+		if (stack.getItemDamage() == 3)
+		{
+			tooltip.add("");
+			tooltip.add("\u00A76" + "I like it that order exists somwhere,");
+			tooltip.add("\u00A76" + "even if it shatters near me.");
+			tooltip.add("\u00A76" + "Order will wither and born");
+			tooltip.add("\u00A76" + "will be chaos...");
+			tooltip.add("");
+			tooltip.add("\u00A7n" + "Inflicts Wither and Weakness around you.");
+		}
+		if (stack.getItemDamage() == 4)
+		{
+			tooltip.add("");
+			tooltip.add("\u00A76" + "Suddenly there was a great burst of");
+			tooltip.add("\u00A76" + "light through the Darkness.");
+			tooltip.add("\u00A76" + "The light spread out and where");
+			tooltip.add("\u00A76" + "it touched, Darkness disappeared..");
+			tooltip.add("");
+			tooltip.add("\u00A7n" + "Calls down a storm of lightning.");
+		}
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public EnumRarity getRarity(ItemStack stack)
 	{
-		if (stack.getItemDamage() == 0)
+		return EnumRarity.UNCOMMON;
+		/*if (stack.getItemDamage() == 0)
 		{
 			return EnumRarity.UNCOMMON;
 		}else{
 			return EnumRarity.COMMON;
-		}
+		}*/
 	}
 }
