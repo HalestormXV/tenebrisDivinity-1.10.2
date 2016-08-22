@@ -14,7 +14,7 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 
-public class ItemAzuriteArmor extends ItemArmor 
+public class ItemAzuriteArmor extends ItemArmor
 {
 
 	public ItemAzuriteArmor(int renderIndexIn, EntityEquipmentSlot equipmentSlotIn) 

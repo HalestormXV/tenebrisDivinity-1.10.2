@@ -21,6 +21,11 @@ item.serpentineAxe.name=Serpentine Axe
 item.serpentinePick.name=Serpentine Pick
 item.serpentineMulti.name=Serpentine Mattock
 
+#ARMOR
+item.azurite_leggings.name=Azurite Leggings
+item.azurite_boots.name=Azurite Boots
+item.azurite_chest.name=Azurite Chestplate
+item.azurite_helm.name=Azurite Helmet
 
 #WEAPONS
 item.serpentineSword.name=Serpentine Blade

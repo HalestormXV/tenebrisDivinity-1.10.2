@@ -46,5 +46,10 @@ public class ClientProxy extends CommonProxy
 		ModelBakery.registerItemVariants(eAngelusItems.eaCardO, new ResourceLocation("eangel:"+eAngelusCards.O_cardNames[i]));
 		}
 	}
+	
+    public static String stripItemPrefix(String inString) 
+    {
+        return inString.replaceAll("item.", "");
+    }
 		
 }

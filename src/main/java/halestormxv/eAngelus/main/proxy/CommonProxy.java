@@ -6,6 +6,7 @@ import halestormxv.eAngelus.main.handlers.EA_FuelHandler;
 import halestormxv.eAngelus.main.init.eAngelusArmor;
 import halestormxv.eAngelus.main.init.eAngelusBlocks;
 import halestormxv.eAngelus.main.init.eAngelusItems;
+import halestormxv.eAngelus.main.init.eAngelusSoundEvents;
 import halestormxv.eAngelus.main.world.E_AngWorldGen;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -22,6 +23,7 @@ public class CommonProxy
 		eAngelusArmor.initArmor();
 		EARecipes.initRecipes();
 		EA_Achievements.AchievementRegistry();
+		eAngelusSoundEvents.registerSounds();
 		
 	}
 	

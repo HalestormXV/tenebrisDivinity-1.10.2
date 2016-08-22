@@ -1,0 +1,6 @@
+{
+    "parent": "item/bow",
+    "textures": {
+        "layer0": "eangel:items/judgment_pulling_1"
+    }
+}

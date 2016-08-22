@@ -3,7 +3,6 @@ package halestormxv.eAngelus.main.init;
 import halestormxv.eAngelus.items.AngelicIngot;
 import halestormxv.eAngelus.items.EAItem;
 import halestormxv.eAngelus.items.ModItemAxe;
-import halestormxv.eAngelus.items.ModItemBowBase;
 import halestormxv.eAngelus.items.ModItemHoe;
 import halestormxv.eAngelus.items.ModItemMulti;
 import halestormxv.eAngelus.items.ModItemPick;
@@ -44,7 +43,6 @@ public class eAngelusItems
 	//Weapons
 	public static Item serpentineSword;
 	public static Item serpentineShield;
-	public static Item bowItemBase;
 
 	//Cards
 	public static Item eaCardO;
@@ -80,7 +78,6 @@ public class eAngelusItems
 
 		//Weapons
 		serpentineSword = registerItem(new ModItemSword("serpentineSword", Serpentine), "serpentineSword");
-		bowItemBase = registerItem(new ModItemBowBase("bowItemBase"), "bowItemBase");
 		//serpentineShield = registerItem(new SerpentSword("serpentinePick", Serpentine), "serpentinePick");
 	}
 
@@ -111,7 +108,6 @@ public class eAngelusItems
 
 		//Weapons
 		registerRender(serpentineSword);
-		registerRender(bowItemBase);
 		//registerRender(serpentineShield);
 	}
 

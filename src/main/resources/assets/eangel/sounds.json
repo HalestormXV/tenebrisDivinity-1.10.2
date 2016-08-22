@@ -1,0 +1,4 @@
+{
+"cardUse.ambient": {"category": "master", "sounds": [{"name": "eangel:/cards/card_use","stream":false}]},
+"fireCardUse.ambient": {"category": "master", "sounds": [{"name": "eangel:/cards/card_fire_use","stream":false}]}
+}

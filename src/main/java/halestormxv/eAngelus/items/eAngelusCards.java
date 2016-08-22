@@ -6,6 +6,7 @@ import java.util.Random;
 
 import halestormxv.eAngelus.main.Reference;
 import halestormxv.eAngelus.main.init.eAngelusItems;
+import halestormxv.eAngelus.main.init.eAngelusSoundEvents;
 import halestormxv.eAngelus.main.network.packets.ChatUtil;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -113,6 +114,7 @@ public class eAngelusCards extends Item
 					fireball2.accelerationY = look.yCoord * 0.3;
 					fireball2.accelerationZ = look.zCoord * 0.3;
 					worldIn.spawnEntityInWorld(fireball2);
+					entityLiving.playSound(eAngelusSoundEvents.FIRE_CARD_USE, 4.0f, 1.0f);
 				}
 			}
 			break;
@@ -122,6 +124,7 @@ public class eAngelusCards extends Item
 			{
 				EntityPlayer entityPlayer = (EntityPlayer) entityLiving;
 				entityPlayer.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, 500, 2));
+				entityPlayer.playSound(eAngelusSoundEvents.FINISH_CARD_USE, 4.0f, 1.0f);
 			}
 			break;
 
@@ -131,6 +134,7 @@ public class eAngelusCards extends Item
 				EntityPlayer entityPlayer = (EntityPlayer) entityLiving;
 				entityPlayer.addPotionEffect(new PotionEffect(MobEffects.SPEED, 500, 2));
 				entityPlayer.addPotionEffect(new PotionEffect(MobEffects.JUMP_BOOST, 500, 2));
+				entityPlayer.playSound(eAngelusSoundEvents.FINISH_CARD_USE, 4.0f, 1.0f);
 			}
 			break;
 

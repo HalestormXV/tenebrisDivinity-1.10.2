@@ -1,5 +1,6 @@
 package halestormxv.eAngelus.crafting;
 
+import halestormxv.eAngelus.main.init.eAngelusArmor;
 import halestormxv.eAngelus.main.init.eAngelusBlocks;
 import halestormxv.eAngelus.main.init.eAngelusItems;
 import net.minecraft.init.Items;
@@ -20,7 +21,7 @@ public class EARecipes
 								'#', eAngelusItems.angelic_ingot				
 						});
 		
-		
+		//Serpentine Axe
 		GameRegistry.addRecipe(new ItemStack(eAngelusItems.serpentineAxe),
 				"*SS", 
 				"*sS", 
@@ -28,6 +29,7 @@ public class EARecipes
 				
 				'S', eAngelusItems.serpentineStone, 's', Items.STICK);
 		
+		//Serpentine Spade
 		GameRegistry.addRecipe(new ItemStack(eAngelusItems.serpentineSpade),
 				"*S*", 
 				"*s*", 
@@ -35,6 +37,7 @@ public class EARecipes
 				
 				'S', eAngelusItems.serpentineStone, 's', Items.STICK);
 		
+		//Serpentine Pick
 		GameRegistry.addRecipe(new ItemStack(eAngelusItems.serpentinePick),
 				"SSS", 
 				"*s*", 
@@ -42,6 +45,7 @@ public class EARecipes
 				
 				'S', eAngelusItems.serpentineStone, 's', Items.STICK);
 		
+		//Serpentine Hoe
 		GameRegistry.addRecipe(new ItemStack(eAngelusItems.serpentineHoe),
 				"*SS", 
 				"*s*", 
@@ -49,6 +53,7 @@ public class EARecipes
 				
 				'S', eAngelusItems.serpentineStone, 's', Items.STICK);
 		
+		//Multi Tool
 		GameRegistry.addRecipe(new ItemStack(eAngelusItems.serpentineMulti),
 				"PAS", 
 				"*sH", 
@@ -58,10 +63,44 @@ public class EARecipes
 				'A', eAngelusItems.serpentineAxe, 'H', eAngelusItems.serpentineHoe);
 		
 		
-		//Shapeless Crafting
+		//Azurite Helm
+		GameRegistry.addRecipe(new ItemStack(eAngelusArmor.AZURITE_HELM),
+				"AAA", 
+				"A*A", 
+				"***", 
+				
+				'A', eAngelusItems.azuriteStone);
+		//Azurite Chest
+		GameRegistry.addRecipe(new ItemStack(eAngelusArmor.AZURITE_CHEST),
+				"A*A", 
+				"AAA", 
+				"AAA", 
+				
+				'A', eAngelusItems.azuriteStone);
+		//Azurite Leggings
+		GameRegistry.addRecipe(new ItemStack(eAngelusArmor.AZURITE_LEGGINGS),
+				"AAA", 
+				"A*A", 
+				"A*A", 
+				
+				'A', eAngelusItems.azuriteStone);
+		//Azurite Boots
+		GameRegistry.addRecipe(new ItemStack(eAngelusArmor.AZURITE_BOOTS),
+				"***", 
+				"A*A", 
+				"A*A", 
+				
+				'A', eAngelusItems.azuriteStone);
+		
+		//===================Shapeless Crafting===================\\
 		GameRegistry.addShapelessRecipe(new ItemStack(eAngelusItems.angelic_ingot, 9), 
 				new Object [] {
 				eAngelusBlocks.angelic_block
+				});
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(eAngelusItems.demonic_ingot, 9), 
+				new Object [] {
+				eAngelusBlocks.demonic_block
 				});
 		
 		
