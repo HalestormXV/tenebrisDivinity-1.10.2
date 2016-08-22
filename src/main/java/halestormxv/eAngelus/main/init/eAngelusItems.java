@@ -14,14 +14,18 @@ import halestormxv.eAngelus.main.Reference;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
+import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class eAngelusItems 
 {
+	static int[] AzuriteReductionAmounts = new int[]{2,7,4,1}; //Helmet, Chest, Legs, Boots
+	
 	public static Item angelic_ingot;
 	public static Item demonic_ingot;
 	public static Item topazStone;
@@ -48,7 +52,8 @@ public class eAngelusItems
 
 	//Materials
 	public static ToolMaterial Serpentine = EnumHelper.addToolMaterial("Serpentine", 4, 1800, 10.0F, 9.0F, 25);
-
+	public static ArmorMaterial Azurite = EnumHelper.addArmorMaterial("AZURITE", Reference.MODID + ":azurite", 23, AzuriteReductionAmounts, 19, SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 0);
+	
 	public static void initItems() //illustrates both ways to register an item.
 	{	
 		//Cards

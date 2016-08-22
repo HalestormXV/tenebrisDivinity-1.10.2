@@ -3,6 +3,7 @@ package halestormxv.eAngelus.main.proxy;
 import halestormxv.eAngelus.achievements.EA_Achievements;
 import halestormxv.eAngelus.crafting.EARecipes;
 import halestormxv.eAngelus.items.eAngelusCards;
+import halestormxv.eAngelus.main.init.eAngelusArmor;
 import halestormxv.eAngelus.main.init.eAngelusBlocks;
 import halestormxv.eAngelus.main.init.eAngelusItems;
 import net.minecraft.client.renderer.block.model.ModelBakery;
@@ -18,10 +19,7 @@ public class ClientProxy extends CommonProxy
 	public void preInit(FMLPreInitializationEvent event)
 	{
 		super.preInit(event);
-		eAngelusItems.initItems();
-		eAngelusBlocks.initBlocks();
-		EARecipes.initRecipes();
-		EA_Achievements.AchievementRegistry();
+
 	}
 	
 	@Override
@@ -30,6 +28,7 @@ public class ClientProxy extends CommonProxy
 		super.init(event);
 		eAngelusItems.registerRenders();
 		eAngelusBlocks.registerRenders();
+		eAngelusArmor.registerRenders();
 		registerModelBakeryStuff();
 	}
 	

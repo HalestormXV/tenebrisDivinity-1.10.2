@@ -16,8 +16,10 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
 
-@Mod(modid = Reference.MODID, name = Reference.NAME, version = Reference.VERSION)
+@Mod(modid = Reference.MODID, name = Reference.NAME, 
+version = Reference.VERSION, acceptedMinecraftVersions = Reference.ACCEPTED_VERSIONS)
 public class EAMain 
 {
 	@SidedProxy(clientSide = Reference.CLIENTPROXY, serverSide = Reference.COMMONPROXY)
@@ -38,10 +40,10 @@ public class EAMain
 	@EventHandler
 	public void init(FMLInitializationEvent event)
 	{
-		this.proxy.init(event);
-		GameRegistry.registerWorldGenerator(new E_AngWorldGen(), 0);
+		GameRegistry.registerWorldGenerator(new E_AngWorldGen(), 1);
 		GameRegistry.registerFuelHandler(new EA_FuelHandler());
 		AngelusPacketHandler.init();
+		this.proxy.init(event);
 		//EARemoveRecipes.removeCraftingRecipes(Items.diamond_sword);
 	}
 	
