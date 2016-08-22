@@ -3,10 +3,13 @@ package halestormxv.eAngelus.main;
 import org.apache.logging.log4j.Logger;
 
 import halestormxv.eAngelus.main.handlers.EA_FuelHandler;
+import halestormxv.eAngelus.main.handlers.EAngelus_ElytraReplicate;
 import halestormxv.eAngelus.main.network.AngelusPacketHandler;
 import halestormxv.eAngelus.main.proxy.CommonProxy;
 import halestormxv.eAngelus.main.world.E_AngWorldGen;
 import net.minecraft.init.Items;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -44,6 +47,7 @@ public class EAMain
 		GameRegistry.registerFuelHandler(new EA_FuelHandler());
 		AngelusPacketHandler.init();
 		this.proxy.init(event);
+		//MinecraftForge.EVENT_BUS.register(new EAngelus_ElytraReplicate());
 		//EARemoveRecipes.removeCraftingRecipes(Items.diamond_sword);
 	}
 	
