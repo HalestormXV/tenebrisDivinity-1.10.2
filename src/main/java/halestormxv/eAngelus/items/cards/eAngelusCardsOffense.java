@@ -1,4 +1,4 @@
-package halestormxv.eAngelus.items;
+package halestormxv.eAngelus.items.cards;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
@@ -39,7 +39,7 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class eAngelusCards extends Item
+public class eAngelusCardsOffense extends Item
 {
 	static public final int CHARGE_UP_INITIAL_PAUSE_TICKS = 10;
 	static public final int CHARGE_UP_DURATION_TICKS = 20;
@@ -47,7 +47,7 @@ public class eAngelusCards extends Item
 	//Offense Card Names
 	public static final String[] O_cardNames = new String[] {"cIgnis", "cFortitudo", "cVentus", "cArescet", "cLightning"};
 
-	public eAngelusCards(String unlocalizedName)
+	public eAngelusCardsOffense(String unlocalizedName)
 	{
 		this.setUnlocalizedName(unlocalizedName);
 		this.setCreativeTab(Reference.eaCreativeTab);
@@ -69,6 +69,15 @@ public class eAngelusCards extends Item
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand)
 	{
+		NBTTagCompound nbtTagCompound = itemStackIn.getTagCompound();
+		if (nbtTagCompound == null) 
+		{
+			nbtTagCompound = new NBTTagCompound();
+			itemStackIn.setTagCompound(nbtTagCompound);
+			ItemStack reagentName = new ItemStack(getItemUsedByORDER());
+			nbtTagCompound.setString("Reagent", reagentName.getDisplayName());
+		}
+		
 		if (playerIn.inventory.hasItemStack(new ItemStack(getItemUsedByORDER())))
 		{
 			if (playerIn.isSneaking())
@@ -228,55 +237,77 @@ public class eAngelusCards extends Item
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced)
 	{
+		NBTTagCompound nbtTagCompound = stack.getTagCompound();
+		
 		if (stack.getItemDamage() == 0)
 		{
-			tooltip.add("");
 			tooltip.add("\u00A76" + "You fall into my arms.");
 			tooltip.add("\u00A76" + "You are the good gift of destruction's path.");
 			tooltip.add("\u00A76" + "When life sickens more than disease.");
 			tooltip.add("\u00A76" + "And boldness is the root of beauty...");
 			tooltip.add("");
 			tooltip.add("\u00A7n" + "Calls forth fire supreme.");
+			tooltip.add("");
+			if (nbtTagCompound != null && nbtTagCompound.hasKey("Reagent"))
+			{
+				tooltip.add("\u00A7aReagent Used: "+nbtTagCompound.getString("Reagent"));
+			}
 		}
 		if (stack.getItemDamage() == 1)
 		{
-			tooltip.add("");
 			tooltip.add("\u00A76" + "You have power over your mind.");
 			tooltip.add("\u00A76" + "Not over outside events.");
 			tooltip.add("\u00A76" + "Realize this and you");
 			tooltip.add("\u00A76" + "will find strength..");
 			tooltip.add("");
 			tooltip.add("\u00A7n" + "Enhances physical strength.");
+			tooltip.add("");
+			if (nbtTagCompound != null && nbtTagCompound.hasKey("Reagent"))
+			{
+				tooltip.add("\u00A7aReagent Used: "+nbtTagCompound.getString("Reagent"));
+			}
 		}
 		if (stack.getItemDamage() == 2)
 		{
-			tooltip.add("");
 			tooltip.add("\u00A76" + "He who does not know how");
 			tooltip.add("\u00A76" + "to look back at where he came");
 			tooltip.add("\u00A76" + "from will never get to his");
 			tooltip.add("\u00A76" + "destination...");
 			tooltip.add("");
 			tooltip.add("\u00A7n" + "Enhances Movement and Jump.");
+			tooltip.add("");
+			if (nbtTagCompound != null && nbtTagCompound.hasKey("Reagent"))
+			{
+				tooltip.add("\u00A7aReagent Used: "+nbtTagCompound.getString("Reagent"));
+			}
 		}
 		if (stack.getItemDamage() == 3)
 		{
-			tooltip.add("");
 			tooltip.add("\u00A76" + "I like it that order exists somwhere,");
 			tooltip.add("\u00A76" + "even if it shatters near me.");
 			tooltip.add("\u00A76" + "Order will wither and born");
 			tooltip.add("\u00A76" + "will be chaos...");
 			tooltip.add("");
 			tooltip.add("\u00A7n" + "Inflicts Wither and Weakness around you.");
+			tooltip.add("");
+			if (nbtTagCompound != null && nbtTagCompound.hasKey("Reagent"))
+			{
+				tooltip.add("\u00A7aReagent Used: "+nbtTagCompound.getString("Reagent"));
+			}
 		}
 		if (stack.getItemDamage() == 4)
 		{
-			tooltip.add("");
 			tooltip.add("\u00A76" + "Suddenly there was a great burst of");
 			tooltip.add("\u00A76" + "light through the Darkness.");
 			tooltip.add("\u00A76" + "The light spread out and where");
 			tooltip.add("\u00A76" + "it touched, Darkness disappeared..");
 			tooltip.add("");
 			tooltip.add("\u00A7n" + "Calls down a storm of lightning.");
+			tooltip.add("");
+			if (nbtTagCompound != null && nbtTagCompound.hasKey("Reagent"))
+			{
+				tooltip.add("\u00A7aReagent Used: "+nbtTagCompound.getString("Reagent"));
+			}
 		}
 	}
 

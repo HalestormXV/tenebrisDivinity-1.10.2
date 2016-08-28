@@ -2,6 +2,7 @@ package halestormxv.eAngelus.main;
 
 import org.apache.logging.log4j.Logger;
 
+import halestormxv.eAngelus.crafting.EARecipes;
 import halestormxv.eAngelus.main.handlers.EA_FuelHandler;
 import halestormxv.eAngelus.main.handlers.EAngelus_ElytraReplicate;
 import halestormxv.eAngelus.main.network.AngelusPacketHandler;

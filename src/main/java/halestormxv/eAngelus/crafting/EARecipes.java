@@ -103,6 +103,17 @@ public class EARecipes
 				eAngelusBlocks.demonic_block
 				});
 		
+		GameRegistry.addShapelessRecipe(new ItemStack(eAngelusItems.mystalDust, 3), 
+				new Object [] {
+				eAngelusItems.displacementDust
+				});
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(eAngelusItems.displacementDust, 1), 
+				eAngelusItems.displacementDust, 
+				eAngelusItems.displacementDust, 
+				eAngelusItems.displacementDust
+				);
+		
 		
 		//Smelting Recipes
 		GameRegistry.addSmelting(eAngelusBlocks.angelicOre, new ItemStack(eAngelusItems.angelic_ingot), 13.0F);

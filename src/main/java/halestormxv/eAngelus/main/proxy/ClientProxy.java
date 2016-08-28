@@ -2,7 +2,8 @@ package halestormxv.eAngelus.main.proxy;
 
 import halestormxv.eAngelus.achievements.EA_Achievements;
 import halestormxv.eAngelus.crafting.EARecipes;
-import halestormxv.eAngelus.items.eAngelusCards;
+import halestormxv.eAngelus.items.cards.eAngelusCardsDefense;
+import halestormxv.eAngelus.items.cards.eAngelusCardsOffense;
 import halestormxv.eAngelus.main.init.eAngelusArmor;
 import halestormxv.eAngelus.main.init.eAngelusBlocks;
 import halestormxv.eAngelus.main.init.eAngelusItems;
@@ -41,9 +42,14 @@ public class ClientProxy extends CommonProxy
 	@Override
 	public void registerModelBakeryStuff() 
 	{
-		for (int i = 0; i < eAngelusCards.O_cardNames.length; ++i)
+		for (int i = 0; i < eAngelusCardsOffense.O_cardNames.length; ++i)
 		{
-		ModelBakery.registerItemVariants(eAngelusItems.eaCardO, new ResourceLocation("eangel:"+eAngelusCards.O_cardNames[i]));
+		ModelBakery.registerItemVariants(eAngelusItems.eaCardO, new ResourceLocation("eangel:"+eAngelusCardsOffense.O_cardNames[i]));
+		}
+		
+		for (int i = 0; i < eAngelusCardsDefense.D_cardNames.length; ++i)
+		{
+		ModelBakery.registerItemVariants(eAngelusItems.eaCardD, new ResourceLocation("eangel:"+eAngelusCardsDefense.D_cardNames[i]));
 		}
 	}
 	

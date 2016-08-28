@@ -8,7 +8,8 @@ import halestormxv.eAngelus.items.ModItemMulti;
 import halestormxv.eAngelus.items.ModItemPick;
 import halestormxv.eAngelus.items.ModItemSpade;
 import halestormxv.eAngelus.items.ModItemSword;
-import halestormxv.eAngelus.items.eAngelusCards;
+import halestormxv.eAngelus.items.cards.eAngelusCardsDefense;
+import halestormxv.eAngelus.items.cards.eAngelusCardsOffense;
 import halestormxv.eAngelus.main.Reference;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -32,6 +33,7 @@ public class eAngelusItems
 	public static Item mystalDust;
 	public static Item azuriteStone;
 	public static Item serpentineStone;
+	public static Item displacementDust;
 
 	//Tools
 	public static Item serpentinePick;
@@ -46,6 +48,7 @@ public class eAngelusItems
 
 	//Cards
 	public static Item eaCardO;
+	public static Item eaCardD;
 
 
 	//Materials
@@ -55,7 +58,8 @@ public class eAngelusItems
 	public static void initItems() //illustrates both ways to register an item.
 	{	
 		//Cards
-		eaCardO = registerItem(new eAngelusCards("eaCardO"), "eaCardO");
+		eaCardO = registerItem(new eAngelusCardsOffense("eaCardO"), "eaCardO");
+		eaCardD = registerItem(new eAngelusCardsDefense("eaCardD"), "eaCardD");
 
 		//Ingots
 		angelic_ingot = registerItem(new AngelicIngot(), "angelic_ingot");
@@ -68,6 +72,7 @@ public class eAngelusItems
 		//Dusts
 		angelicDust = registerItem(new EAItem("angelicDust"), "angelicDust");
 		mystalDust = registerItem(new EAItem("mystalDust"), "mystalDust");
+		displacementDust = registerItem(new EAItem("displacementDust"), "displacementDust");
 
 		//Tools
 		serpentineHoe = registerItem(new ModItemHoe("serpentineHoe", Serpentine), "serpentineHoe");
@@ -85,9 +90,14 @@ public class eAngelusItems
 	public static void registerRenders()
 	{
 		//Cards
-		for (int i = 0; i < eAngelusCards.O_cardNames.length; ++i)
+		for (int i = 0; i < eAngelusCardsOffense.O_cardNames.length; ++i)
 		{
-			registerRender(eaCardO, i, eAngelusCards.O_cardNames[i]);
+			registerRender(eaCardO, i, eAngelusCardsOffense.O_cardNames[i]);
+		}
+		
+		for (int i = 0; i < eAngelusCardsDefense.D_cardNames.length; ++i)
+		{
+			registerRender(eaCardD, i, eAngelusCardsDefense.D_cardNames[i]);
 		}
 		//
 
@@ -98,6 +108,7 @@ public class eAngelusItems
 		registerRender(mystalDust);
 		registerRender(azuriteStone);
 		registerRender(serpentineStone);
+		registerRender(displacementDust);
 
 		//Tools
 		registerRender(serpentinePick);

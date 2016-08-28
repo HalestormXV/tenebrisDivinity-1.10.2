@@ -6,13 +6,20 @@ item.angelicDust.name=Angelic Dust
 item.mystalDust.name=Mystal Dust
 item.azuriteStone.name=Azurite Stone
 item.serpentineStone.name=Serpentine Stone
+item.displacementDust.name=Displacement Dust
 
-#CARDS
+#CARDS OFFENSE
 item.eaCardO.cIgnis.name=ORDER: Ignis
 item.eaCardO.cFortitudo.name=ORDER: Fortitudo
 item.eaCardO.cVentus.name=ORDER: Ventus
 item.eaCardO.cArescet.name=ORDER: Arescet
 item.eaCardO.cLightning.name=ORDER: Lightning
+#CARDS DEFENSE
+item.eaCardD.c_D_Resist.name=ORDER: Resistebat
+item.eaCardD.c_D_WaterBreath.name=ORDER: Respiratio
+item.eaCardD.c_D_NightVision.name=ORDER: Noctis Visio
+item.eaCardD.c_D_Feather.name=ORDER: Pinna
+item.eaCardD.c_D_ExplodeProtect.name=ORDER: Arma
 
 #TOOLS
 item.serpentineHoe.name=Serpentine Hoe
