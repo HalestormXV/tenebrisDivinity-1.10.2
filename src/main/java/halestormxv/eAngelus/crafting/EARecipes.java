@@ -93,6 +93,9 @@ public class EARecipes
 				'A', eAngelusItems.azuriteStone);
 		
 		//===================Shapeless Crafting===================\\
+		ItemStack t1Dust = new ItemStack(eAngelusItems.mystalDust);
+		ItemStack t2Dust = new ItemStack(eAngelusItems.displacementDust);
+		
 		GameRegistry.addShapelessRecipe(new ItemStack(eAngelusItems.angelic_ingot, 9), 
 				new Object [] {
 				eAngelusBlocks.angelic_block
@@ -108,11 +111,7 @@ public class EARecipes
 				eAngelusItems.displacementDust
 				});
 		
-		GameRegistry.addShapelessRecipe(new ItemStack(eAngelusItems.displacementDust, 1), 
-				eAngelusItems.displacementDust, 
-				eAngelusItems.displacementDust, 
-				eAngelusItems.displacementDust
-				);
+		GameRegistry.addShapelessRecipe(new ItemStack(eAngelusItems.displacementDust, 1), t1Dust, t1Dust, t1Dust);
 		
 		
 		//Smelting Recipes

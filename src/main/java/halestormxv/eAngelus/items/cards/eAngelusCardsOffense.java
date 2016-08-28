@@ -69,16 +69,18 @@ public class eAngelusCardsOffense extends Item
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand)
 	{
+		//NBT Tag Setup
 		NBTTagCompound nbtTagCompound = itemStackIn.getTagCompound();
 		if (nbtTagCompound == null) 
 		{
 			nbtTagCompound = new NBTTagCompound();
 			itemStackIn.setTagCompound(nbtTagCompound);
-			ItemStack reagentName = new ItemStack(getItemUsedByORDER());
+			ItemStack reagentName = new ItemStack(getItemUsedByORDER(itemStackIn));
 			nbtTagCompound.setString("Reagent", reagentName.getDisplayName());
 		}
-		
-		if (playerIn.inventory.hasItemStack(new ItemStack(getItemUsedByORDER())))
+
+		//Check for Reagent
+		if (playerIn.inventory.hasItemStack(new ItemStack(getItemUsedByORDER(itemStackIn))))
 		{
 			if (playerIn.isSneaking())
 			{
@@ -204,12 +206,17 @@ public class eAngelusCardsOffense extends Item
 	}
 
 	protected void consumeReagent(ItemStack stack, World worldIn, EntityPlayer entityLiving) {
-		entityLiving.inventory.clearMatchingItems(getItemUsedByORDER(), -1, 1, null);
+		entityLiving.inventory.clearMatchingItems(getItemUsedByORDER(stack), -1, 1, null);
 	}
 
-	protected Item getItemUsedByORDER() 
+	protected Item getItemUsedByORDER(ItemStack itemStackIn) 
 	{
-		return eAngelusItems.mystalDust;
+		if (itemStackIn.getItemDamage() == 4)
+		{
+			return eAngelusItems.displacementDust;
+		}else{
+			return eAngelusItems.mystalDust;
+		}
 	}
 
 	//===============================AUTO HANDLE UNLOCALIZED NAMES===============================\\
@@ -238,7 +245,7 @@ public class eAngelusCardsOffense extends Item
 	public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced)
 	{
 		NBTTagCompound nbtTagCompound = stack.getTagCompound();
-		
+
 		if (stack.getItemDamage() == 0)
 		{
 			tooltip.add("\u00A76" + "You fall into my arms.");

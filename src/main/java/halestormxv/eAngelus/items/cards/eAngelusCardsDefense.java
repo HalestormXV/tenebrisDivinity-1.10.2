@@ -57,6 +57,7 @@ public class eAngelusCardsDefense extends Item
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand)
 	{
+		//Setup NBT
 		NBTTagCompound nbtTagCompound = itemStackIn.getTagCompound();
 		if (nbtTagCompound == null) 
 		{
@@ -66,6 +67,7 @@ public class eAngelusCardsDefense extends Item
 			nbtTagCompound.setString("Reagent", reagentName.getDisplayName());
 		}
 
+		//Check for Reagent in Inventory
 		if (playerIn.inventory.hasItemStack(new ItemStack(getItemUsedByORDER(itemStackIn))))
 		{
 			if (playerIn.isSneaking())
